@@ -471,8 +471,8 @@ async function loadNews() {
   loading.value=true; error.value=''
   try {
     const [resAll,reMy]=await Promise.all([
-      fetch('http://localhost:8081/api/news',    {headers:getHeaders(),mode:'cors'}),
-      fetch('http://localhost:8081/api/news/my', {headers:getHeaders(),mode:'cors'})
+      fetch('/api/news',    {headers:getHeaders(),mode:'cors'}),
+      fetch('/api/news/my', {headers:getHeaders(),mode:'cors'})
     ])
     const allNews=resAll.ok?await resAll.json():[]
     const myNews =reMy.ok ?await reMy.json() :[]
@@ -508,7 +508,7 @@ async function checkScheduledNews() {
 
   // Hay noticias que ya deberían estar publicadas → recargar del backend
   try {
-    const reMy = await fetch('http://localhost:8081/api/news/my', {
+    const reMy = await fetch('/api/news/my', {
       headers: getHeaders(), mode: 'cors'
     })
     if (!reMy.ok) return
@@ -531,7 +531,7 @@ async function checkScheduledNews() {
 async function publishNow(item) {
   item._saving=true
   try {
-    const res=await fetch(`http://localhost:8081/api/news/${item.id}`,{method:'PUT',headers:getHeaders(),mode:'cors',body:JSON.stringify({newsStatus:'PUBLICADO'})})
+    const res=await fetch(`/api/news/${item.id}`,{method:'PUT',headers:getHeaders(),mode:'cors',body:JSON.stringify({newsStatus:'PUBLICADO'})})
     if(!res.ok) throw new Error()
     const updated=await res.json()
     item.newsStatus=updated.newsStatus||'PUBLICADO'
@@ -545,7 +545,7 @@ async function publishNow(item) {
 async function cancelScheduled(item) {
   item._saving = true
   try {
-    const res = await fetch(`http://localhost:8081/api/news/${item.id}`, {
+    const res = await fetch(`/api/news/${item.id}`, {
       method: 'PUT', headers: getHeaders(), mode: 'cors',
       body: JSON.stringify({ newsStatus: 'BORRADOR', scheduledAt: null })
     })
@@ -566,7 +566,7 @@ async function cancelScheduled(item) {
 async function unpublish(item) {
   item._saving=true
   try {
-    const res=await fetch(`http://localhost:8081/api/news/${item.id}`,{method:'PUT',headers:getHeaders(),mode:'cors',body:JSON.stringify({newsStatus:'BORRADOR'})})
+    const res=await fetch(`/api/news/${item.id}`,{method:'PUT',headers:getHeaders(),mode:'cors',body:JSON.stringify({newsStatus:'BORRADOR'})})
     if(!res.ok) throw new Error()
     const updated=await res.json()
     item.newsStatus=updated.newsStatus||'BORRADOR'
@@ -588,7 +588,7 @@ async function confirmDelete() {
   if(target) target._deleting=true
 
   try {
-    const res=await fetch(`http://localhost:8081/api/news/${deleteModal.id}`,{
+    const res=await fetch(`/api/news/${deleteModal.id}`,{
       method:'DELETE', headers:getHeaders(), mode:'cors'
     })
 

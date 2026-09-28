@@ -432,7 +432,7 @@ async function loadCareers() {
 async function loadCategories() {
   try {
     // Ajusta la URL según tu api.js / baseURL
-    const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8081'}/api/categories`)
+    const res = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/categories`)
     const data = await res.json()
     availableCategories.value = (Array.isArray(data) ? data : data.data ?? []).map(c => ({
       id:       c.id,

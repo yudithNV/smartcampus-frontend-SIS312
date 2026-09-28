@@ -573,7 +573,7 @@ async function loadNews() {
   loadingNews.value = true
   loadError.value = ''
   try {
-    const res = await fetch(`http://localhost:8081/api/news/${newsId.value}`, {
+    const res = await fetch(`/api/news/${newsId.value}`, {
       headers: getHeaders(), mode: 'cors'
     })
     if (!res.ok) throw new Error(`Error ${res.status}`)
@@ -632,7 +632,7 @@ async function sendToApi() {
     payload.attachmentUrl = await toBase64(attachFileObj.value)
   }
 
-  const res = await fetch(`http://localhost:8081/api/news/${newsId.value}`, {
+  const res = await fetch(`/api/news/${newsId.value}`, {
     method: 'PUT',
     headers: getHeaders(),
     mode: 'cors',

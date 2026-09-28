@@ -577,7 +577,7 @@ function getHeaders(isJson = true) {
 }
 
 async function uploadFileToBacked(file, type) {
-  const endpoint = type === 'image' ? 'http://localhost:8081/api/files/upload/image' : 'http://localhost:8081/api/files/upload/document'
+  const endpoint = type === 'image' ? '/api/files/upload/image' : '/api/files/upload/document'
   const formData = new FormData(); formData.append('file', file)
   const res = await fetch(endpoint, { method: 'POST', headers: getHeaders(false), mode: 'cors', body: formData })
   if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.error || `Error ${res.status}`) }
@@ -604,7 +604,7 @@ async function runSubmit(statusOverride) {
     scheduledAtISO = new Date(form.scheduledAt).toISOString()
   }
 
-  const res = await fetch('http://localhost:8081/api/news', {
+  const res = await fetch('/api/news', {
     method: 'POST', headers: getHeaders(true), mode: 'cors',
     body: JSON.stringify({
       title:         form.title.trim(),

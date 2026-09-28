@@ -1,5 +1,5 @@
 // Configuración base de API
-const API_BASE_URL = 'http://localhost:8081/api'
+const API_BASE_URL = '/api'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // apiRequest (forma nueva correcta)

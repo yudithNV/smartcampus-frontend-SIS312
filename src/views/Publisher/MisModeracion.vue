@@ -585,7 +585,7 @@ async function openNewsModal(group) {
   newsModal.coverUrl          = ''
 
   try {
-    const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8081'
+    const API_BASE = import.meta.env.VITE_API_URL || ''
     const token    = localStorage.getItem('ucb_token')
 
     // Fetch noticia (cuerpo + imagen)

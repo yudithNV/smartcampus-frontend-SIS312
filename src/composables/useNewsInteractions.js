@@ -1,6 +1,6 @@
 import { ref, reactive } from 'vue'
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8081'
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 // ── Estado GLOBAL (fuera del composable para persistir entre renders) ──
 const reactions      = reactive({})

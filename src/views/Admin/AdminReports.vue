@@ -356,7 +356,7 @@ onMounted(() => {
 
 async function fetchCareers() {
   try {
-    const response = await fetch('http://localhost:8081/api/careers')
+    const response = await fetch('/api/careers')
     if (response.ok) {
       careers.value = await response.json()
     }
@@ -367,7 +367,7 @@ async function fetchCareers() {
 
 async function fetchEventCategories() {
   try {
-    const response = await fetch('http://localhost:8081/api/categories')
+    const response = await fetch('/api/categories')
     if (response.ok) {
       eventCategories.value = await response.json()
     }
@@ -500,7 +500,7 @@ async function downloadReportFile(modulo, formato) {
     }
     
     const queryString = queryParams.toString()
-    const endpoint = `http://localhost:8081/api/reportes/${modulo}/${formato}${queryString ? '?' + queryString : ''}`
+    const endpoint = `/api/reportes/${modulo}/${formato}${queryString ? '?' + queryString : ''}`
     
     const response = await fetch(endpoint, {
       method: 'GET',

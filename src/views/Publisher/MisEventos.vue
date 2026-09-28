@@ -531,7 +531,7 @@ async function togglePublish(item) {
       publish: !item.isActive  // Cambiar el estado de publicación
     }
 
-    const res = await fetch(`http://localhost:8081/api/events/${item.id}`, {
+    const res = await fetch(`/api/events/${item.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

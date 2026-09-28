@@ -280,7 +280,7 @@ async function handleLogin () {
   loading.value = true
 
   try {
-    const res = await fetch('http://localhost:8081/api/auth/login', {
+    const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: form.email.trim(), password: form.password })
@@ -337,7 +337,7 @@ async function handleLogin () {
 
     // ── AGREGAR: obtener id y nombre del usuario ──
     try {
-      const meRes = await fetch('http://localhost:8081/api/auth/me', {
+      const meRes = await fetch('/api/auth/me', {
         headers: {
           'Authorization': `Bearer ${data.token}`,
           'Content-Type': 'application/json'

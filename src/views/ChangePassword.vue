@@ -258,7 +258,7 @@ async function handleSubmit() {
   loading.value = true
   try {
     const token = localStorage.getItem('ucb_token')
-    const res = await fetch('http://localhost:8081/api/auth/change-password', {
+    const res = await fetch('/api/auth/change-password', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
